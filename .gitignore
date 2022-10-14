@@ -1,0 +1,6 @@
+.history
+.terraform
+*.tfstate
+*.tfstate.backup
+welcome.zip
+terraform/response.json

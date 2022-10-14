@@ -1,0 +1,22 @@
+# @see https://www.gitpod.io/docs/references/gitpod-yml
+
+vscode:
+  extensions:
+    - pomdtr.excalidraw-editor
+    - PKief.material-icon-theme
+    - ms-azuretools.vscode-docker
+    - redhat.vscode-yaml
+    - xyz.local-history
+    - hashicorp.terraform
+
+image:
+  file: .gitpod.Dockerfile
+
+# @see https://www.gitpod.io/docs/configure/workspaces/tasks
+tasks:
+  - name: Start localstack
+    command: docker compose up -d
+
+  - name: Set up act
+    command: echo "-P ubuntu-latest=nektos/act-environments-ubuntu:22.04" > ~/.actrc
+

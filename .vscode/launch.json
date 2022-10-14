@@ -1,0 +1,52 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node-terminal",
+            "name": "Terraform init",
+            "command": "cd terraform && tflocal init",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
+            "cwd": "${workspaceFolder}/terraform",
+            "request": "launch",
+        },
+        {
+            "type": "node-terminal",
+            "name": "Terraform plan",
+            "command": "cd terraform && tflocal plan",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
+            "cwd": "${workspaceFolder}/terraform",
+            "request": "launch",
+        },
+        {
+            "type": "node-terminal",
+            "name": "Terraform apply",
+            "command": "cd terraform && tflocal apply",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
+            "cwd": "${workspaceFolder}/terraform",
+            "request": "launch",
+        },
+        {
+            "type": "node-terminal",
+            "name": "Test lambda function",
+            "command": "cd terraform && awslocal lambda invoke --function-name welcome --payload '{\"data\":1}' --invocation-type Event response.json; cat response.json",
+            "cwd": "${workspaceFolder}/terraform",
+            "request": "launch",
+        },
+        {
+            "type": "node-terminal",
+            "name": "Github Actions Deploy",
+            "command": "act ",
+            "cwd": "${workspaceFolder}/terraform",
+            "request": "launch",
+        }
+    ]
+}

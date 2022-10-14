@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  push:
+    
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    env:
+       AWS_DEFAULT_REGION: eu-central-1
+    steps:
+      # @see https://github.com/actions/checkout:w
+
+      - uses: actions/checkout@v3
+      - name: Start localstack
+        run: |
+          docker compose up -d 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+
+      - uses: actions/setup-python@v4 
+        with:
+          python-version: '3.9' 
+      - name: install dependencies
+        run: |
+          pip install terraform-local
+          pip install awscli-local[ver1]
+
+
+      - name: Terraform
+        run: |
+          cd terraform
+          tflocal init
+          tflocal plan
+
+          tflocal apply -auto-approve
+      - name: Test lambda function
+        run: |
+          awslocal lambda invoke --function-name welcome --payload '{"data":1}' --invocation-type Event  response.json
+
+          cat response.json
+
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker compose down --remove-orphans --volumes
