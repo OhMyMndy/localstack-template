@@ -1,3 +1,4 @@
+---
 # @see https://www.gitpod.io/docs/references/gitpod-yml
 
 vscode:
@@ -18,5 +19,4 @@ tasks:
     command: docker compose up -d
 
   - name: Set up act
-    command: echo "-P ubuntu-latest=nektos/act-environments-ubuntu:22.04" > ~/.actrc
-
+    command: echo "-P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest" > ~/.actrc

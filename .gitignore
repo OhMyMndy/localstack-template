@@ -2,5 +2,5 @@
 .terraform
 *.tfstate
 *.tfstate.backup
-welcome.zip
+terraform/*.zip
 terraform/response.json
