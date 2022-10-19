@@ -44,7 +44,7 @@
         {
             "type": "node-terminal",
             "name": "Github Actions Deploy",
-            "command": "act ",
+            "command": "echo \"-P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest\" > ~/.actrc; act ",
             "cwd": "${workspaceFolder}/",
             "request": "launch",
         }
