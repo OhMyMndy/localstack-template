@@ -8,6 +8,11 @@ import os
 def create_report(event: dict, context):
     sts = boto3.client(
         service_name='sts',
+        region_name='eu-central-1',
+        endpoint_url='http://localstack:4566',
+        use_ssl=False,
+        aws_access_key_id='test',
+        aws_secret_access_key='test'
     )
     period = event.get('period', 14)
     account_id = event.get('account_id', '')

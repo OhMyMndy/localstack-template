@@ -38,9 +38,9 @@ jobs:
           tflocal apply -auto-approve
       - name: Test lambda function
         run: |
-          awslocal lambda invoke --function-name welcome --payload '{"data":1}' --invocation-type Event  response.json
+          awslocal lambda invoke --function-name create-report --payload '{"region": "eu-central-1"}' response.json
 
-          cat response.json
+          cat response.json | jq
 
 
       - name: Cleanup
