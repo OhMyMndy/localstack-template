@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "node-terminal",
+            "name": "Docker compose up",
+            "command": "docker compose up -d",
+            "cwd": "${workspaceFolder}/",
+            "request": "launch",
+        },
+        {
+            "type": "node-terminal",
             "name": "Terraform init",
             "command": "cd terraform && tflocal init",
             "env": {
