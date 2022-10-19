@@ -6,35 +6,38 @@
     "configurations": [
         {
             "type": "node-terminal",
-            "name": "Docker compose up",
-            "command": "docker compose up -d",
-            "cwd": "${workspaceFolder}/",
-            "request": "launch",
-        },{
-            "type": "node-terminal",
             "name": "Terraform init",
-            "command": "tflocal init",
+            "command": "cd terraform && tflocal init",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
             "cwd": "${workspaceFolder}/terraform",
             "request": "launch",
         },
         {
             "type": "node-terminal",
             "name": "Terraform plan",
-            "command": "tflocal plan",
+            "command": "cd terraform && tflocal plan",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
             "cwd": "${workspaceFolder}/terraform",
             "request": "launch",
         },
         {
             "type": "node-terminal",
             "name": "Terraform apply",
-            "command": "tflocal apply",
+            "command": "cd terraform && tflocal apply",
+            "env": {
+                "AWS_DEFAULT_REGION": "eu-central-1"
+            },
             "cwd": "${workspaceFolder}/terraform",
             "request": "launch",
         },
         {
             "type": "node-terminal",
             "name": "Test lambda function",
-            "command": "awslocal lambda invoke --function-name create-report --payload '{\"region\": \"eu-central-1\"}' --invocation-type RequestResponse response.json; cat response.json | jq",
+            "command": "cd terraform && awslocal lambda invoke --function-name welcome --payload '{\"data\":1}' --invocation-type Event response.json; cat response.json",
             "cwd": "${workspaceFolder}/terraform",
             "request": "launch",
         },
